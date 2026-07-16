@@ -5,6 +5,7 @@
 <h1 align="center">PromptPin</h1>
 
 <p align="center"><strong>Your prompts, one click away.</strong></p>
+<p align="center">Version 0.1.0 · macOS 14+</p>
 
 PromptPin is a lightweight macOS menu bar app that organizes reusable prompts for any project or repeatable workflow. Use it for development, research, writing, operations, or any process where useful prompts should stay ordered and close at hand.
 
@@ -19,8 +20,22 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts fo
 
 ## Requirements
 
-- macOS 14 or later
-- Xcode with the matching macOS SDK
+- Using the app: macOS 14 or later
+- Developing from source: Xcode with the matching macOS SDK
+
+## Install with DMG
+
+If you only want to use PromptPin, download `PromptPin-0.1.0.dmg`, open it, and drag **PromptPin** into the **Applications** folder. You do not need Xcode or the source code.
+
+The current DMG is ad hoc signed for local testing and is not notarized for public distribution yet.
+
+## Current release
+
+| Version | Build | Minimum macOS | Package |
+| --- | ---: | --- | --- |
+| 0.1.0 | 1 | macOS 14.0 | `PromptPin-0.1.0.dmg` |
+
+Public distribution requires a Developer ID signature and Apple notarization.
 
 ## Run
 
@@ -56,3 +71,11 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test
 ```
 
 The command-line Swift compiler and macOS SDK must come from the same Xcode installation. If Xcode is installed somewhere else, update `DEVELOPER_DIR` accordingly.
+
+Build the app bundle and DMG with:
+
+```sh
+./scripts/package-dmg.sh
+```
+
+The generated image is written to `dist/PromptPin-0.1.0.dmg`.

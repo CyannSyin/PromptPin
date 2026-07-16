@@ -7,10 +7,15 @@ struct PromptPinApp: App {
     @StateObject private var store = PromptStore()
 
     private let menuBarIcon: NSImage = {
-        guard let url = Bundle.module.url(
+        let resourceURL = Bundle.main.url(
             forResource: "PromptPinMenuBarIcon",
             withExtension: "png"
-        ), let image = NSImage(contentsOf: url) else {
+        ) ?? Bundle.module.url(
+            forResource: "PromptPinMenuBarIcon",
+            withExtension: "png"
+        )
+
+        guard let resourceURL, let image = NSImage(contentsOf: resourceURL) else {
             return NSImage(systemSymbolName: "pin.fill", accessibilityDescription: "PromptPin")!
         }
 
