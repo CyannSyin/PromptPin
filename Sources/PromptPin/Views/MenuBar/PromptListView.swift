@@ -19,6 +19,7 @@ struct PromptListView: View {
                         systemImage: "text.badge.plus",
                         description: Text("Add prompts for this project in Manage.")
                     )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     List {
                         ForEach(Array(project.prompts.enumerated()), id: \.element.id) { index, prompt in
@@ -82,3 +83,20 @@ struct PromptListView: View {
         }
     }
 }
+
+#if DEBUG
+#Preview("Menu Bar – Empty Project") {
+    let store = PromptStore(
+        fileURL: FileManager.default.temporaryDirectory
+            .appendingPathComponent("PromptPin-MenuBarPreview-\(UUID().uuidString).json"),
+        seedWhenEmpty: false
+    )
+    let projectID = store.addProject(name: "research", symbol: "sparkles")
+
+    return NavigationStack {
+        PromptListView(projectID: projectID)
+    }
+    .environmentObject(store)
+    .frame(width: 380, height: 500)
+}
+#endif

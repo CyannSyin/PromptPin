@@ -36,6 +36,7 @@ struct PromptPinApp: App {
             Image(nsImage: menuBarIcon)
                 .renderingMode(.template)
                 .accessibilityLabel("PromptPin")
+                .help("PromptPin")
         }
         .menuBarExtraStyle(.window)
 
@@ -44,5 +45,6 @@ struct PromptPinApp: App {
                 .environmentObject(store)
                 .frame(minWidth: 820, minHeight: 560)
         }
+        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle(showsTitle: true))
     }
 }

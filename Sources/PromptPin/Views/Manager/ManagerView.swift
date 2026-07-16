@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct ManagerView: View {
@@ -7,28 +8,39 @@ struct ManagerView: View {
 
     var body: some View {
         NavigationSplitView {
-            List(selection: $selectedProjectID) {
-                ForEach(store.projects) { project in
-                    Label(project.name, systemImage: project.symbol)
-                        .tag(project.id)
-                        .contextMenu {
-                            Button("Edit") {
-                                projectEditor = .edit(project)
-                            }
-                            Divider()
-                            Button("Delete", role: .destructive) {
-                                deleteProject(project.id)
-                            }
-                        }
-                }
-            }
-            .navigationTitle("Projects")
-            .toolbar {
-                ToolbarItem {
+            VStack(spacing: 0) {
+                HStack {
+                    Text("Projects")
+                        .font(.headline)
+
+                    Spacer()
+
                     Button {
                         projectEditor = .new
                     } label: {
-                        Label("New Project", systemImage: "plus")
+                        Image(systemName: "plus")
+                    }
+                    .buttonStyle(.borderless)
+                    .help("New Project")
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+
+                Divider()
+
+                List(selection: $selectedProjectID) {
+                    ForEach(store.projects) { project in
+                        Label(project.name, systemImage: project.symbol)
+                            .tag(project.id)
+                            .contextMenu {
+                                Button("Edit") {
+                                    projectEditor = .edit(project)
+                                }
+                                Divider()
+                                Button("Delete", role: .destructive) {
+                                    deleteProject(project.id)
+                                }
+                            }
                     }
                 }
             }
@@ -43,6 +55,7 @@ struct ManagerView: View {
                 )
             }
         }
+        .background(CompactWindowToolbar())
         .onAppear {
             if selectedProjectID == nil {
                 selectedProjectID = store.projects.first?.id
@@ -68,6 +81,23 @@ struct ManagerView: View {
     }
 }
 
+private struct CompactWindowToolbar: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSView {
+        CompactWindowToolbarView()
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        nsView.window?.toolbarStyle = .unifiedCompact
+    }
+}
+
+private final class CompactWindowToolbarView: NSView {
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        window?.toolbarStyle = .unifiedCompact
+    }
+}
+
 private struct ProjectManagerView: View {
     @EnvironmentObject private var store: PromptStore
     let projectID: UUID
@@ -86,6 +116,7 @@ private struct ProjectManagerView: View {
                         project: project,
                         onAddPrompt: { promptEditor = .new }
                     )
+                    .fixedSize(horizontal: false, vertical: true)
 
                     Divider()
 
@@ -95,6 +126,8 @@ private struct ProjectManagerView: View {
                             systemImage: "text.badge.plus",
                             description: Text("Add the first prompt for this project.")
                         )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .padding(.top, 72)
                     } else {
                         List {
                             ForEach(Array(project.prompts.enumerated()), id: \.element.id) { index, prompt in
@@ -114,7 +147,6 @@ private struct ProjectManagerView: View {
                 }
             }
         }
-        .navigationTitle("Prompts")
         .sheet(item: $promptEditor) { target in
             PromptEditorSheet(target: target) { title, content in
                 switch target {
@@ -239,3 +271,18 @@ private struct PromptManagerRow: View {
         .padding(.vertical, 6)
     }
 }
+
+#if DEBUG
+#Preview("Manager – Empty Project") {
+    let store = PromptStore(
+        fileURL: FileManager.default.temporaryDirectory
+            .appendingPathComponent("PromptPin-ManagerPreview-\(UUID().uuidString).json"),
+        seedWhenEmpty: false
+    )
+    store.addProject(name: "research", symbol: "sparkles")
+
+    return ManagerView()
+        .environmentObject(store)
+        .frame(width: 1_000, height: 720)
+}
+#endif

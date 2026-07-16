@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MenuBarRootView: View {
     @EnvironmentObject private var store: PromptStore
+    @Environment(\.openSettings) private var openSettings
     @State private var searchText = ""
 
     private var filteredProjects: [PromptProject] {
@@ -33,6 +34,19 @@ struct MenuBarRootView: View {
                 }
             }
             .navigationTitle("PromptPin")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Image("PromptPinMenuBarIcon", bundle: .module)
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 18, height: 18)
+
+                        Text("PromptPin")
+                            .font(.headline)
+                    }
+                }
+            }
             .searchable(text: $searchText, prompt: "Search projects")
             .navigationDestination(for: UUID.self) { projectID in
                 PromptListView(projectID: projectID)
@@ -46,7 +60,17 @@ struct MenuBarRootView: View {
 
     private var footer: some View {
         HStack {
-            SettingsLink {
+            Button {
+                openSettings()
+                NSApplication.shared.activate(ignoringOtherApps: true)
+
+                DispatchQueue.main.async {
+                    let settingsWindow = NSApplication.shared.windows.first {
+                        $0.title == "PromptPin Settings"
+                    }
+                    settingsWindow?.makeKeyAndOrderFront(nil)
+                }
+            } label: {
                 Label("Manage", systemImage: "slider.horizontal.3")
             }
 
