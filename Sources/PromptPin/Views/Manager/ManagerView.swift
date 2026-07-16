@@ -93,7 +93,7 @@ private struct ProjectManagerView: View {
                         ContentUnavailableView(
                             "No Prompts",
                             systemImage: "text.badge.plus",
-                            description: Text("Add the first SOP step for this project.")
+                            description: Text("Add the first prompt for this project.")
                         )
                     } else {
                         List {

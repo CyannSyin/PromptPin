@@ -122,7 +122,7 @@ struct PromptEditorSheet: View {
             Text(isNew ? "New Prompt" : "Edit Prompt")
                 .font(.title2.bold())
 
-            TextField("SOP step title", text: $title)
+            TextField("Step Title", text: $title)
                 .textFieldStyle(.roundedBorder)
 
             TextEditor(text: $content)

@@ -7,9 +7,9 @@ PromptPin is a native macOS menu bar app for organizing reusable prompts as orde
 ```text
 PromptPin
 └── Project
-    ├── SOP step / Prompt 1
-    ├── SOP step / Prompt 2
-    └── SOP step / Prompt 3
+    ├── Step / Prompt 1
+    ├── Step / Prompt 2
+    └── Step / Prompt 3
 ```
 
 The menu bar experience is optimized for retrieval: select a project, select a workflow step, and copy its prompt. Editing happens in a separate management window.
@@ -22,7 +22,7 @@ Sources/PromptPin/
 │   └── PromptPinApp.swift          App scenes and menu bar entry point
 ├── Models/
 │   ├── PromptProject.swift         Project and ordered prompt collection
-│   └── PromptItem.swift            SOP step title and prompt content
+│   └── PromptItem.swift            Step title and prompt content
 ├── Services/
 │   ├── PromptStore.swift           State, CRUD, ordering, JSON persistence
 │   └── ClipboardService.swift      macOS pasteboard integration
@@ -50,7 +50,7 @@ JSON keeps the MVP dependency-free and makes future import/export straightforwar
 Included:
 
 - Local projects
-- Ordered SOP prompts
+- Ordered project prompts
 - Project search
 - One-click copy
 - Create, edit, delete, and reorder

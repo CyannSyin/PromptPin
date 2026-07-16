@@ -1,13 +1,17 @@
-# PromptPin
+<p align="center">
+  <img src="Assets/PromptPinIcon.png" width="144" alt="PromptPin logo">
+</p>
 
-Your prompts, one click away.
+<h1 align="center">PromptPin</h1>
 
-PromptPin is a lightweight macOS menu bar app that organizes reusable prompts by project and workflow.
+<p align="center"><strong>Your prompts, one click away.</strong></p>
+
+PromptPin is a lightweight macOS menu bar app that organizes reusable prompts for any project or repeatable workflow. Use it for development, research, writing, operations, or any process where useful prompts should stay ordered and close at hand.
 
 ## MVP
 
 - Select a project from the menu bar
-- View its prompts in SOP order
+- View its prompts in your preferred order
 - Copy a prompt with one click
 - Create, edit, delete, and reorder projects and prompts
 - See the selected project name and prompt count in Manage
@@ -25,7 +29,7 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts by
 3. Press **Run**.
 4. Find the pin-and-prompt icon in the macOS menu bar.
 
-Use **Manage** at the bottom of the menu to edit projects and workflow prompts. Select a project in the sidebar, then use **Add Prompt** in the detail header to add a workflow step.
+Use **Manage** at the bottom of the menu to edit projects and prompts. Select a project in the sidebar, then use **Add Prompt** in the detail header to add a step.
 
 Prompt data is stored at:
 

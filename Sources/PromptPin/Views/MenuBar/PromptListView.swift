@@ -17,7 +17,7 @@ struct PromptListView: View {
                     ContentUnavailableView(
                         "No Prompts",
                         systemImage: "text.badge.plus",
-                        description: Text("Add the SOP prompts for this project in Manage.")
+                        description: Text("Add prompts for this project in Manage.")
                     )
                 } else {
                     List {
