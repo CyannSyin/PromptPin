@@ -27,15 +27,31 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts fo
 
 If you only want to use PromptPin, download `PromptPin-0.1.1.dmg`, open it, and drag **PromptPin** into the **Applications** folder. You do not need Xcode or the source code.
 
-The current DMG is ad hoc signed for local testing and is not notarized for public distribution yet.
+> **Note:** The current DMG is ad hoc signed for local testing and has not been notarized by Apple.
 
 ## Current release
 
-| Version | Build | Minimum macOS | Package |
-| --- | ---: | --- | --- |
-| 0.1.1 | 2 | macOS 14.0 | `PromptPin-0.1.1.dmg` |
+| Version | Build | Released | Minimum macOS | Package |
+| --- | ---: | --- | --- | --- |
+| 0.1.1 | 2 | 2026-07-17 | macOS 14.0 | `PromptPin-0.1.1.dmg` |
 
-Public distribution requires a Developer ID signature and Apple notarization.
+## Release history
+
+### 0.1.1 — 2026-07-17
+
+- Refined the menu bar popover header with the PromptPin icon and hover tooltip.
+- Redesigned the Manage window with a compact title bar and improved sidebar controls.
+- Moved project information and prompt actions upward to use space more efficiently.
+- Ensured the Manage window opens in front of other windows.
+- Improved empty-project and empty-prompt layouts.
+- Added the refreshed `PromptPin-0.1.1.dmg` package.
+
+### 0.1.0 — 2026-07-16
+
+- Released the initial macOS menu bar MVP.
+- Added local project and prompt creation, editing, deletion, and ordering.
+- Added one-click prompt copying and local JSON persistence.
+- Added the first ad hoc signed DMG package.
 
 ## Run
 
