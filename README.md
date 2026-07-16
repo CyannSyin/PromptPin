@@ -10,6 +10,7 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts by
 - View its prompts in SOP order
 - Copy a prompt with one click
 - Create, edit, delete, and reorder projects and prompts
+- See the selected project name and prompt count in Manage
 - Keep all data locally on your Mac
 
 ## Requirements
@@ -22,9 +23,9 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts by
 1. Open `Package.swift` in Xcode.
 2. Select the `PromptPin` scheme and **My Mac** destination.
 3. Press **Run**.
-4. Find the pin icon in the macOS menu bar.
+4. Find the pin-and-prompt icon in the macOS menu bar.
 
-Use **Manage** at the bottom of the menu to edit projects and workflow prompts.
+Use **Manage** at the bottom of the menu to edit projects and workflow prompts. Select a project in the sidebar, then use **Add Prompt** in the detail header to add a workflow step.
 
 Prompt data is stored at:
 
@@ -36,10 +37,18 @@ Prompt data is stored at:
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the product model, source layout, and MVP boundaries.
 
+## Design assets
+
+- [`Assets/PromptPinIcon.svg`](Assets/PromptPinIcon.svg) and [`Assets/PromptPinIcon.png`](Assets/PromptPinIcon.png): editable and raster product icon
+- [`Assets/PromptPinMenuBarIcon.svg`](Assets/PromptPinMenuBarIcon.svg) and [`Assets/PromptPinMenuBarIcon.png`](Assets/PromptPinMenuBarIcon.png): menu bar icon source and Retina PNG
+- [`Sources/PromptPin/Resources/PromptPinMenuBarIcon.png`](Sources/PromptPin/Resources/PromptPinMenuBarIcon.png): packaged runtime resource
+
+The menu bar artwork is loaded as a macOS template image. macOS automatically applies the correct color for light, dark, and selected menu bar states.
+
 ## Development
 
 ```sh
-swift test
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer swift test
 ```
 
-The command-line Swift compiler and macOS SDK must come from the same Xcode installation.
+The command-line Swift compiler and macOS SDK must come from the same Xcode installation. If Xcode is installed somewhere else, update `DEVELOPER_DIR` accordingly.

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">PromptPin app icon</title>
+  <desc id="desc">A coral pushpin anchoring a prompt card on a warm white rounded square.</desc>
+
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#faf9f7"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdfb"/>
+      <stop offset="1" stop-color="#f7f3f0"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="0.18" y1="0" x2="0.82" y2="1">
+      <stop offset="0" stop-color="#ff9b80"/>
+      <stop offset="0.48" stop-color="#ff665f"/>
+      <stop offset="1" stop-color="#d9364f"/>
+    </linearGradient>
+    <linearGradient id="coralEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9b80"/>
+      <stop offset="1" stop-color="#df3d50"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7457e8"/>
+      <stop offset="1" stop-color="#4a2bc1"/>
+    </linearGradient>
+    <linearGradient id="needle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38206f"/>
+      <stop offset="0.55" stop-color="#7558d8"/>
+      <stop offset="1" stop-color="#2e195f"/>
+    </linearGradient>
+
+    <filter id="outerShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#2e2038" flood-opacity="0.15"/>
+    </filter>
+    <filter id="cardShadow" x="-25%" y="-25%" width="150%" height="170%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#2c1d34" flood-opacity="0.18"/>
+    </filter>
+    <filter id="pinShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#661e35" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <rect x="38" y="34" width="948" height="948" rx="198" fill="url(#canvas)" stroke="#ece9e5" stroke-width="3" filter="url(#outerShadow)"/>
+
+  <g filter="url(#cardShadow)">
+    <rect x="238" y="438" width="548" height="350" rx="72" fill="url(#card)" stroke="#eee8e4" stroke-width="3"/>
+    <rect x="314" y="568" width="396" height="30" rx="15" fill="url(#violet)"/>
+    <rect x="314" y="636" width="360" height="30" rx="15" fill="url(#violet)"/>
+    <rect x="314" y="704" width="190" height="30" rx="15" fill="url(#violet)"/>
+  </g>
+
+  <g filter="url(#pinShadow)">
+    <path d="M486 430 L538 430 L527 539 Q512 568 497 539 Z" fill="url(#needle)"/>
+    <ellipse cx="512" cy="442" rx="112" ry="58" fill="url(#coralEdge)"/>
+    <path d="M462 264 H562 L551 411 Q512 446 473 411 Z" fill="url(#coral)"/>
+    <ellipse cx="512" cy="266" rx="102" ry="55" fill="url(#coralEdge)"/>
+    <ellipse cx="512" cy="251" rx="100" ry="51" fill="#ff836e"/>
+    <ellipse cx="484" cy="232" rx="47" ry="17" fill="#ffc0a8" opacity="0.58"/>
+    <ellipse cx="512" cy="428" rx="110" ry="50" fill="url(#coral)"/>
+    <path d="M424 414 Q512 462 600 414" fill="none" stroke="#ff9d85" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <ellipse cx="512" cy="516" rx="25" ry="13" fill="#3d247d" opacity="0.2"/>
+</svg>

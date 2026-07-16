@@ -81,40 +81,40 @@ private struct ProjectManagerView: View {
     var body: some View {
         Group {
             if let project {
-                if project.prompts.isEmpty {
-                    ContentUnavailableView(
-                        "No Prompts",
-                        systemImage: "text.badge.plus",
-                        description: Text("Add the first SOP step for this project.")
+                VStack(spacing: 0) {
+                    ProjectPromptHeader(
+                        project: project,
+                        onAddPrompt: { promptEditor = .new }
                     )
-                } else {
-                    List {
-                        ForEach(Array(project.prompts.enumerated()), id: \.element.id) { index, prompt in
-                            PromptManagerRow(
-                                prompt: prompt,
-                                position: index + 1,
-                                isFirst: index == 0,
-                                isLast: index == project.prompts.count - 1,
-                                onEdit: { promptEditor = .edit(prompt) },
-                                onMoveUp: { store.movePrompt(projectID: projectID, promptID: prompt.id, direction: .up) },
-                                onMoveDown: { store.movePrompt(projectID: projectID, promptID: prompt.id, direction: .down) },
-                                onDelete: { store.deletePrompt(projectID: projectID, promptID: prompt.id) }
-                            )
+
+                    Divider()
+
+                    if project.prompts.isEmpty {
+                        ContentUnavailableView(
+                            "No Prompts",
+                            systemImage: "text.badge.plus",
+                            description: Text("Add the first SOP step for this project.")
+                        )
+                    } else {
+                        List {
+                            ForEach(Array(project.prompts.enumerated()), id: \.element.id) { index, prompt in
+                                PromptManagerRow(
+                                    prompt: prompt,
+                                    position: index + 1,
+                                    isFirst: index == 0,
+                                    isLast: index == project.prompts.count - 1,
+                                    onEdit: { promptEditor = .edit(prompt) },
+                                    onMoveUp: { store.movePrompt(projectID: projectID, promptID: prompt.id, direction: .up) },
+                                    onMoveDown: { store.movePrompt(projectID: projectID, promptID: prompt.id, direction: .down) },
+                                    onDelete: { store.deletePrompt(projectID: projectID, promptID: prompt.id) }
+                                )
+                            }
                         }
                     }
                 }
             }
         }
-        .navigationTitle(project?.name ?? "Prompts")
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    promptEditor = .new
-                } label: {
-                    Label("New Prompt", systemImage: "plus")
-                }
-            }
-        }
+        .navigationTitle("Prompts")
         .sheet(item: $promptEditor) { target in
             PromptEditorSheet(target: target) { title, content in
                 switch target {
@@ -130,6 +130,55 @@ private struct ProjectManagerView: View {
                 }
             }
         }
+    }
+}
+
+private struct ProjectPromptHeader: View {
+    let project: PromptProject
+    let onAddPrompt: () -> Void
+    @State private var isAddPromptHovered = false
+
+    var body: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(project.name)
+                    .font(.title2.bold())
+                    .lineLimit(1)
+
+                Text(promptCountDescription)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            Button(action: onAddPrompt) {
+                Label("Add Prompt", systemImage: "plus")
+                    .font(.body.weight(.medium))
+                    .foregroundStyle(isAddPromptHovered ? Color.accentColor : Color.primary)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 7)
+                    .background(
+                        isAddPromptHovered ? Color.accentColor.opacity(0.12) : Color.clear,
+                        in: RoundedRectangle(cornerRadius: 8)
+                    )
+                    .contentShape(RoundedRectangle(cornerRadius: 8))
+            }
+            .buttonStyle(.plain)
+            .onHover { isHovered in
+                withAnimation(.easeOut(duration: 0.15)) {
+                    isAddPromptHovered = isHovered
+                }
+            }
+            .help("Add a prompt to \(project.name)")
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
+    }
+
+    private var promptCountDescription: String {
+        let count = project.prompts.count
+        return "\(count) \(count == 1 ? "prompt" : "prompts")"
     }
 }
 

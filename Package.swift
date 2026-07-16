@@ -13,7 +13,10 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "PromptPin",
-            path: "Sources/PromptPin"
+            path: "Sources/PromptPin",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "PromptPinTests",
