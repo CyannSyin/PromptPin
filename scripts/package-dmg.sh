@@ -4,7 +4,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 PRODUCT_NAME="PromptPin"
-VERSION="0.1.1"
+VERSION="0.1.2"
 DIST_DIR="$ROOT_DIR/dist"
 WORK_DIR="$ROOT_DIR/.build/package-dmg"
 APP_BUNDLE="$WORK_DIR/$PRODUCT_NAME.app"

@@ -1,19 +1,21 @@
 import AppKit
 import SwiftUI
 
-@main
-@MainActor
-struct PromptPinApp: App {
-    @StateObject private var store = PromptStore()
-
-    private let menuBarIcon: NSImage = {
-        let resourceURL = Bundle.main.url(
-            forResource: "PromptPinMenuBarIcon",
-            withExtension: "png"
-        ) ?? Bundle.module.url(
+enum PromptPinAssets {
+    static let menuBarIcon: NSImage = {
+        var resourceURL = Bundle.main.url(
             forResource: "PromptPinMenuBarIcon",
             withExtension: "png"
         )
+
+        #if DEBUG
+        if resourceURL == nil {
+            resourceURL = Bundle.module.url(
+                forResource: "PromptPinMenuBarIcon",
+                withExtension: "png"
+            )
+        }
+        #endif
 
         guard let resourceURL, let image = NSImage(contentsOf: resourceURL) else {
             return NSImage(systemSymbolName: "pin.fill", accessibilityDescription: "PromptPin")!
@@ -23,6 +25,12 @@ struct PromptPinApp: App {
         image.isTemplate = true
         return image
     }()
+}
+
+@main
+@MainActor
+struct PromptPinApp: App {
+    @StateObject private var store = PromptStore()
 
     init() {
         NSApplication.shared.setActivationPolicy(.accessory)
@@ -33,7 +41,7 @@ struct PromptPinApp: App {
             MenuBarRootView()
                 .environmentObject(store)
         } label: {
-            Image(nsImage: menuBarIcon)
+            Image(nsImage: PromptPinAssets.menuBarIcon)
                 .renderingMode(.template)
                 .accessibilityLabel("PromptPin")
                 .help("PromptPin")

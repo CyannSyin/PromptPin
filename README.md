@@ -5,7 +5,7 @@
 <h1 align="center">PromptPin</h1>
 
 <p align="center"><strong>Your prompts, one click away.</strong></p>
-<p align="center">Version 0.1.1 · macOS 14+</p>
+<p align="center">Version 0.1.2 · macOS 14+</p>
 
 PromptPin is a lightweight macOS menu bar app that organizes reusable prompts for any project or repeatable workflow. Use it for development, research, writing, operations, or any process where useful prompts should stay ordered and close at hand.
 
@@ -25,7 +25,7 @@ PromptPin is a lightweight macOS menu bar app that organizes reusable prompts fo
 
 ## Install with DMG
 
-If you only want to use PromptPin, download `PromptPin-0.1.1.dmg`, open it, and drag **PromptPin** into the **Applications** folder. You do not need Xcode or the source code.
+If you only want to use PromptPin, download `PromptPin-0.1.2.dmg`, open it, and drag **PromptPin** into the **Applications** folder. You do not need Xcode or the source code.
 
 > **Note:** The current DMG is ad hoc signed for local testing and has not been notarized by Apple.
 
@@ -33,9 +33,15 @@ If you only want to use PromptPin, download `PromptPin-0.1.1.dmg`, open it, and 
 
 | Version | Build | Released | Minimum macOS | Package |
 | --- | ---: | --- | --- | --- |
-| 0.1.1 | 2 | 2026-07-17 | macOS 14.0 | `PromptPin-0.1.1.dmg` |
+| 0.1.2 | 3 | 2026-07-17 | macOS 14.0 | `PromptPin-0.1.2.dmg` |
 
 ## Release history
+
+### 0.1.2 — 2026-07-17
+
+- Fixed a crash when opening the menu popover from a DMG installation on another Mac.
+- Made release builds load the menu bar artwork only from the installed app bundle, with a system icon fallback.
+- Added the rebuilt `PromptPin-0.1.2.dmg` package.
 
 ### 0.1.1 — 2026-07-17
 
@@ -94,4 +100,4 @@ Build the app bundle and DMG with:
 ./scripts/package-dmg.sh
 ```
 
-The generated image is written to `dist/PromptPin-0.1.1.dmg`.
+The generated image is written to `dist/PromptPin-0.1.2.dmg`.

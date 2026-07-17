@@ -37,8 +37,7 @@ struct MenuBarRootView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack(spacing: 8) {
-                        Image("PromptPinMenuBarIcon", bundle: .module)
-                            .resizable()
+                        Image(nsImage: PromptPinAssets.menuBarIcon)
                             .renderingMode(.template)
                             .frame(width: 18, height: 18)
 
